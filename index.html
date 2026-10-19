@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Girika! 💖</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: white;
+      background: linear-gradient(135deg, #160022, #5c164b, #ba3977);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #confetti {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 520px;
+      padding: 35px 24px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 28px;
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 12px 50px rgba(0,0,0,.25);
+      animation: appear 1s ease-out;
+    }
+
+    .cake {
+      font-size: 76px;
+      animation: bounce 2s infinite;
+    }
+
+    h1 {
+      margin: 12px 0;
+      font-size: clamp(30px, 8vw, 47px);
+      line-height: 1.2;
+      color: #fff1a8;
+      text-shadow: 0 0 18px #ff8aca;
+    }
+
+    .name {
+      display: inline-block;
+      color: #ffb5df;
+      font-size: clamp(34px, 9vw, 52px);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .subtitle {
+      margin: 14px 0 20px;
+      font-size: 18px;
+    }
+
+    .message {
+      font-size: 16px;
+      line-height: 1.9;
+      color: #fff4fa;
+      margin-bottom: 22px;
+    }
+
+    button {
+      border: none;
+      border-radius: 30px;
+      padding: 14px 24px;
+      background: linear-gradient(90deg, #ff77b7, #ffb4d7);
+      color: #4b1237;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 20px #ff77b755;
+      transition: transform .2s;
+      touch-action: manipulation;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    #surprise {
+      display: none;
+      margin-top: 24px;
+      font-size: 18px;
+      line-height: 1.8;
+      animation: appear .7s ease;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -40px;
+      pointer-events: none;
+      animation: floatUp linear forwards;
+      z-index: 1;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 12px;
+      color: #ffd9ec;
+      opacity: .85;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(-12px) rotate(4deg); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 8px #ff80c0; }
+      to { text-shadow: 0 0 25px #ffb3df, 0 0 40px #ff69b4; }
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-115vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .card { padding: 28px 18px; }
+      .cake { font-size: 62px; }
+      .message { font-size: 15px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="confetti"></canvas>
+
+  <main class="card">
+    <div class="cake">🎂</div>
+
+    <h1>Happy Birthday!</h1>
+    <div class="name">Girika 💖</div>
+
+    <p class="subtitle">✨ Today is all about YOU! ✨</p>
+
+    <p class="message">
+      Happy Birthday to a truly special person! 🥹💕<br>
+      May your beautiful smile never fade,<br>
+      may your dreams come true,<br>
+      and may your life be filled with love,<br>
+      happiness, laughter, and endless blessings. 🌷
+      <br><br>
+      You deserve all the beautiful things<br>
+      this world has to offer. 💗
+    </p>
+
+    <button id="surpriseBtn" type="button">
+      🎁 Open Your Surprise
+    </button>
+
+    <div id="surprise" aria-live="polite">
+      💌 <strong>A Little Birthday Surprise</strong> 💌
+      <br><br>
+      Girika, you make ordinary moments feel
+      a little more magical. 🌙💖
+      <br>
+      I hope this new chapter brings you
+      countless reasons to smile.
+      <br><br>
+      Keep shining, keep smiling, and always
+      remember how special you are! 🧸🌹
+      <br><br>
+      <strong>Happy Birthday, Girika! 🎂❤️</strong>
+      <br>Sending you a universe full of happiness! ✨
+    </div>
+
+    <div class="footer">
+      Made with 💖 just for Girika
+    </div>
+  </main>
+
+  <script>
+    // Colorful confetti animation
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    let pieces = [];
+    let width, height;
+    let animationId;
+
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function createConfetti(count) {
+      const colors = [
+        "#ff70b8", "#ffe66d", "#ffffff",
+        "#8be9fd", "#cba6f7", "#ff9e80"
+      ];
+
+      for (let i = 0; i < count; i++) {
+        pieces.push({
+          x: Math.random() * width,
+          y: Math.random() * height - height,
+          size: Math.random() * 7 + 3,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speed: Math.random() * 3 + 1.5,
+          drift: Math.random() * 2 - 1,
+          rotation: Math.random() * 360,
+          spin: Math.random() * 6 - 3
+        });
+      }
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, width, height);
+
+      pieces.forEach(p => {
+        p.y += p.speed;
+        p.x += p.drift;
+        p.rotation += p.spin;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2,
+                     p.size, p.size * 0.65);
+        ctx.restore();
+
+        if (p.y > height + 10) {
+          p.y = -10;
+          p.x = Math.random() * width;
+        }
+
+        if (p.x < -10) p.x = width + 10;
+        if (p.x > width + 10) p.x = -10;
+      });
+
+      animationId = requestAnimationFrame(animateConfetti);
+    }
+
+    resizeCanvas();
+    createConfetti(width < 600 ? 65 : 120);
+    animateConfetti();
+
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+    });
+
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("span");
+      heart.className = "heart";
+      heart.textContent = ["💖", "💕", "💗", "💘", "🌸"][
+        Math.floor(Math.random() * 5)
+      ];
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 18 + 16) + "px";
+      heart.style.animationDuration = (Math.random() * 4 + 5) + "s";
+
+      document.body.appendChild(heart);
+
+      heart.addEventListener("animationend", () => heart.remove());
+    }
+
+    setInterval(createHeart, 650);
+
+    // Birthday surprise button
+    document.getElementById("surpriseBtn").addEventListener("click", () => {
+      const surprise = document.getElementById("surprise");
+      const button = document.getElementById("surpriseBtn");
+
+      surprise.style.display = "block";
+      button.textContent = "💖 Surprise Opened!";
+      button.disabled = true;
+      button.style.opacity = ".8";
+
+      // A fresh burst of confetti
+      createConfetti(100);
+    });
+  </script>
+</body>
+</html>
